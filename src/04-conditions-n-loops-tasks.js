@@ -254,29 +254,28 @@ function reverseInteger(num) {
  *   4916123456789012 => false
  */
 
-function isCreditCardNumber(ccn) {
-  const str = String(ccn);
-  let checksum = 0;
-  const lastNumber = str.charAt(str.length - 1);
-  const cardnumber = String(ccn).split('').slice(0, -1).map(Number);
+function isCreditCardNumber(/* ccn */) {
+  // const str = String(ccn);
+  // let checksum = 0;
+  // const lastNumber = str.charAt(str.length - 1);
+  // const cardnumber = String(ccn).split('').slice(0, -1).map(Number);
 
-  cardnumber.forEach((number, index) => {
-    if (index % 2 !== 0) {
-      const n = number * 2;
+  // cardnumber.forEach((number, index) => {
+  //   if (index % 2 !== 0) {
+  //     const n = number * 2;
 
-      if (n > 9) {
-        checksum += n - 9;
-      } else {
-        checksum += n;
-      }
-    } else {
-      checksum += number;
-    }
-  });
-  const result = checksum % 10;
-  console.log(result, 'result');
-  console.log(lastNumber);
-  return 10 - result === +lastNumber;
+  //     if (n > 9) {
+  //       checksum += n - 9;
+  //     } else {
+  //       checksum += n;
+  //     }
+  //   } else {
+  //     checksum += number;
+  //   }
+  // });
+  // const result = checksum % 10;
+  // return 10 - result === +lastNumber;
+  throw new Error('Not implemented');
 }
 
 /**
