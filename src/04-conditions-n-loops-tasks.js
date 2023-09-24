@@ -1,3 +1,4 @@
+/* eslint-disable eqeqeq */
 /* *************************************************************************************************
  *                                                                                                *
  * Please read the following tutorial before implementing tasks:                                   *
@@ -171,8 +172,13 @@ function isInsideCircle(/* circle, point */) {
  *   'abracadabra'  => 'c'
  *   'entente' => null
  */
-function findFirstSingleChar(/* str */) {
-  throw new Error('Not implemented');
+function findFirstSingleChar(str) {
+  return (
+    [...str].find(
+      // eslint-disable-next-line comma-dangle
+      (elem, i, arr) => arr.indexOf(elem) === arr.lastIndexOf(elem)
+    ) || null
+  );
 }
 
 /**
@@ -341,8 +347,41 @@ function getDigitalRoot(num) {
  *   '{)' = false
  *   '{[(<{[]}>)]}' = true
  */
-function isBracketsBalanced(/* str */) {
-  throw new Error('Not implemented');
+function isBracketsBalanced(str) {
+  const openBrackets = ['[', '(', '{', '<'];
+  const bracketsPair = {
+    // eslint-disable-next-line no-useless-computed-key
+    [']']: '[',
+    // eslint-disable-next-line no-useless-computed-key
+    ['}']: '{',
+    // eslint-disable-next-line no-useless-computed-key
+    [')']: '(',
+    // eslint-disable-next-line no-useless-computed-key
+    ['>']: '<',
+  };
+  const stack = [];
+
+  // eslint-disable-next-line space-in-parens
+  for (let i = 0; i < str.length; ) {
+    const symbol = str[i];
+    if (openBrackets.includes(symbol)) {
+      stack.push(symbol);
+      i += 1;
+    } else {
+      if (stack.length === 0) {
+        return false;
+      }
+      const topElem = stack[stack.length - 1];
+      if (bracketsPair[symbol] === topElem) {
+        stack.pop();
+        i += 1;
+      } else {
+        return false;
+      }
+    }
+  }
+
+  return stack.length == 'undefined' || stack.length == 0;
 }
 
 /**
